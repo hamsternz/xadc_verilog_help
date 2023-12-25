@@ -6,7 +6,7 @@ module top(
     );
 
     wire new_sample;
-    wire sample;
+    wire [15:0] sample;
 
     reg [19:0] count = 0;
 
@@ -15,11 +15,13 @@ always @(posedge clk)
     begin
         if(new_sample) 
         begin
-            if(!count)
+            if(!count) 
+            begin
                 leds = sample;
                 count = 20'd999999;
-            else
+            end else begin
                 count = count - 1;
+            end
         end
     end
         
